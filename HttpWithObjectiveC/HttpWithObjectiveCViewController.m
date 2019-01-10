@@ -31,18 +31,48 @@
 - (void) viewDidLoad
 {
     responseData = [NSMutableData new];
-    NSURL *url = [NSURL URLWithString:@"http://toranbillups.com/phone/AddSuggestion"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
-    NSData *requestData = [@"name=testname&suggestion=testing123" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+//    NSURL *url = [NSURL URLWithString:@"https://www.wikipedia.org"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+//    NSData *requestData = [@"name=testname&suggestion=testing123" dataUsingEncoding:NSUTF8StringEncoding];
+    
+//    [request setHTTPMethod:@"POST"];
+//    [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//    [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+   
+    
+    
+    NSURL *url = [NSURL URLWithString:@"https://6195.playfabapi.com/Client/LoginWithCustomID?sdk=XPlatCppSdk-3.2.181220"];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url  cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSLog(@"step 0");
+   // NSString *requestStr = [NSString stringWithFormat: @"{\"titleId\":\"6195\",\"developerSecretKey\":\"GI6SWSB39O56T7SG14XRQAO9AAB39HTR3B6T1AXZA7KQE4H54Z\",\"useEmail\":\"paul\@playfab.com\", \"characterName\":\"Ragnar\", \"extraHeaders\":{\"X-PlayFab-Internal\":\"gdpug53mok1yi1gz3ma3b6xooht688r641o5p4so8ipm5y6f8ok\"} }" ];
+    
+    NSString *requestStr = [NSString stringWithFormat: @"{\"titleId\":\"6195\", \"CreateAccount\":true, \"CustomId\":\"test_GSDK\",\"EncryptedRequest\":null,\"InfoRequestParameters\":null,\"PlayerSecret\":null}"];
+                            
+    NSLog(@"JSON = %@", requestStr);
+    NSLog(@"step 1");
+    
+    NSData *requestData = [requestStr dataUsingEncoding:NSUTF8StringEncoding];
     
     [request setHTTPMethod:@"POST"];
-    [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json;charset=utf8" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"true" forHTTPHeaderField:@"X-ReportErrorAsSuccess"];
+    [request setValue:@"XPlatCppSdk-3.2.181220" forHTTPHeaderField:@"X-PlatFabSDK"];
     [request setValue:[NSString stringWithFormat:@"%d", [requestData length]] forHTTPHeaderField:@"Content-Length"];
+    
+    
+    NSLog(@"step 2");
+    
     [request setHTTPBody: requestData];
     
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"step 3");
 }
 
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -57,13 +87,13 @@
     [connection release];
     
     NSString* responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    NSLog(@"the html from google was %@", responseString);
+    NSLog(@"the html from this URL was %@", responseString);
     
     [responseString release];
     
     //hack - start the next request here :|
-    DoHttpPostWithCookie* service = [[DoHttpPostWithCookie alloc] initWithViewController:self];
-    [service startHttpRequestWithCookie:self.cookies];
+  //  DoHttpPostWithCookie* service = [[DoHttpPostWithCookie alloc] initWithViewController:self];
+  //  [service startHttpRequestWithCookie:self.cookies];
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

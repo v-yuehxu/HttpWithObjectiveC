@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -133,9 +133,14 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = N/A;
+				TargetAttributes = {
+					5DB30769134D4EEF0074CD9A = {
+						DevelopmentTeam = LK7KQK7TSC;
+					};
+				};
 			};
 			buildConfigurationList = 5DB30764134D4EEF0074CD9A /* Build configuration list for PBXProject "HttpWithObjectiveC" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -242,12 +247,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = LK7KQK7TSC;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HttpWithObjectiveC/HttpWithObjectiveC-Prefix.pch";
 				INFOPLIST_FILE = "HttpWithObjectiveC/HttpWithObjectiveC-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "HttpWithObjectiveC.v-yuehxu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -256,11 +266,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = LK7KQK7TSC;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HttpWithObjectiveC/HttpWithObjectiveC-Prefix.pch";
 				INFOPLIST_FILE = "HttpWithObjectiveC/HttpWithObjectiveC-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "HttpWithObjectiveC.v-yuehxu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
